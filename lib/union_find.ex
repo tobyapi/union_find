@@ -22,10 +22,10 @@ defmodule UnionFind do
 
   ## Examples
 
-    iex> uf = UnionFind.new(6)
-    %UnionFind{tree: [-1, -1, -1, -1, -1, -1]}
-    iex> uf = uf |> UnionFind.unite(1, 4)
-    %UnionFind{tree: [-1, -2, -1, -1, 1, -1]}
+      iex> uf = UnionFind.new(6)
+      %UnionFind{tree: [-1, -1, -1, -1, -1, -1]}
+      iex> uf = uf |> UnionFind.unite(1, 4)
+      %UnionFind{tree: [-1, -2, -1, -1, 1, -1]}
 
   """
   def unite(%UnionFind{tree: tree}, x, y) do
