@@ -1,4 +1,5 @@
 # UnionFind
+[![CircleCI](https://circleci.com/gh/TobiasGSmollett/union_find.svg?style=svg)](https://circleci.com/gh/TobiasGSmollett/union_find)
 
 UnionFind is a data structure to manipulate disjoint-set.
 Complexity of operations is O(α(n)) (inverse Ackermann function) amortized.
