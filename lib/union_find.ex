@@ -31,14 +31,16 @@ defmodule UnionFind do
   def unite(%UnionFind{tree: tree}, x, y) do
     {_, x} = root(tree, x)
     {_, y} = root(tree, y)
-    if x != y do
-      if Enum.fetch!(tree, y) < Enum.fetch!(tree, x), do: {x, y} = {y, x}
-      tree =
-        tree
-        |> List.update_at(x, &(&1 + Enum.fetch!(tree, y)))
-        |> List.replace_at(y, x)
-    end
+    tree = tree |> do_unite(x, y)
     %UnionFind{tree: tree}
+  end
+  
+  defp do_unite(tree, x, y) when x == y, do: tree
+  defp do_unite(tree, x, y) do
+    {x, y} = if Enum.fetch!(tree, y) < Enum.fetch!(tree, x), do: {y, x}, else: {x, y}
+    tree
+    |> List.update_at(x, &(&1 + Enum.fetch!(tree, y)))
+    |> List.replace_at(y, x)
   end
   
   @doc """
