@@ -29,8 +29,8 @@ defmodule UnionFind do
 
   """
   def unite(%UnionFind{tree: tree}, x, y) do
-    {_, x} = root(tree, x)
-    {_, y} = root(tree, y)
+    x = root(tree, x)
+    y = root(tree, y)
     tree = tree |> do_unite(x, y)
     %UnionFind{tree: tree}
   end
@@ -59,9 +59,7 @@ defmodule UnionFind do
 
   """
   def same?(%UnionFind{tree: tree}, x, y) do
-    {_, root_x} = root(tree, x)
-    {_, root_y} = root(tree, y)
-    root_x == root_y
+    root(tree, x) == root(tree, y)
   end
   
   @doc """
@@ -80,17 +78,14 @@ defmodule UnionFind do
       
   """
   def size(%UnionFind{tree: tree}, x) do
-    {_, x} = root(tree, x)
+    x = root(tree, x)
     tree |> Enum.fetch!(x) |> abs()
   end
   
-  defp root(tree, x) when is_list(tree) do
-    if Enum.fetch!(tree, x) < 0 do
-      {tree, x}
-    else
-      {_, parent_index} = root(tree, Enum.fetch!(tree, x))
-      tree = List.replace_at(tree, x, parent_index)
-      {tree, parent_index}
-    end
-  end
+  defp root(tree, current), do: root(tree, current, current)
+  defp root(_tree, current, previous) when current < 0, do: previous
+  defp root(tree, current, _previous), do: root(tree, Enum.fetch!(tree, current), current)
 end
+
+
+
