@@ -4,7 +4,7 @@ defmodule UnionFind.Mixfile do
   def project do
     [
       app: :union_find,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.5",
       description: "A data structure to manipulate disjoint-set",
       package: [
