@@ -1,7 +1,7 @@
 defmodule UnionFind do
   @moduledoc """
   UnionFind is a data structure to manipulate disjoint-set.
-  Complexity of operations is O(α(n)) (inverse Ackermann function) amortized.
+  Complexity of operations is O(log n).
   """
 
   defstruct [:tree]
